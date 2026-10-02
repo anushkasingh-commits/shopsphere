@@ -41,7 +41,8 @@ export default function AdminProducts() {
   };
 
   // TODO: add a confirmation dialog before deleting.
-  const remove = async (id) => {
+  const remove = async (id, name) => {
+    if (!window.confirm(`Delete "${name}"? This cannot be undone.`)) return;
     await api.delete(`/products/${id}`);
     load();
   };
@@ -92,7 +93,7 @@ export default function AdminProducts() {
               <td>{p.stock}</td>
               <td className="row">
                 <button className="btn btn-ghost" onClick={() => edit(p)}>Edit</button>
-                <button className="btn btn-danger" onClick={() => remove(p._id)}>Delete</button>
+                <button className="btn btn-danger" onClick={() => remove(p._id, p.name)}>Delete</button>
               </td>
             </tr>
           ))}
