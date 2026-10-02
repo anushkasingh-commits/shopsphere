@@ -40,7 +40,7 @@ export default function AdminProducts() {
     setForm({ ...empty, ...p, price: String(p.price), stock: String(p.stock) });
   };
 
-  // TODO: add a confirmation dialog before deleting.
+
   const remove = async (id, name) => {
     if (!window.confirm(`Delete "${name}"? This cannot be undone.`)) return;
     await api.delete(`/products/${id}`);
